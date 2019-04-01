@@ -1,7 +1,7 @@
 import {hashHistory} from 'dva/router'
 import qs from 'qs'
 import { request } from 'http';
-import {query } from '../services/users'
+import {query ,delay} from '../services/users'
 
 const DEFAULT_DATA =  [
   {
@@ -41,7 +41,6 @@ export default {
     },
     setup2({ dispatch, history }) {  // eslint-disable-line
       history.listen(location=>{
-        console.log("localtion",location)
         if(location.pathname === '/Users'){
           dispatch({type:'query',payload:{}})  // query 掉用接口数据
         }
@@ -55,8 +54,9 @@ export default {
     },
     *query({payload},{select,call,put}){
       // yield put({type:'showLoading'});
+      yield call(delay,2000)
       const {data} = yield call(query)
-      console.log("data==>",data)
+     
       if(data){
         yield put({
           type:'querySuccess',

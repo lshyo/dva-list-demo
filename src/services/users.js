@@ -3,3 +3,9 @@ import qs from 'qs';
 export async function query(params){
   return request(`/api/users?${qs.stringify(params)}`)
 }
+
+export function delay(timeout){
+  return new Promise((resolve)=>{
+    setTimeout(resolve,timeout)
+  })
+}

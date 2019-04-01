@@ -5,7 +5,7 @@ import {Table,message,Popconfirm} from 'antd';
 const UserList =({
     total,
     current,
-    loading,
+    isloading,
     dataSource
 })=>{
     const columns = [{
@@ -44,7 +44,7 @@ const UserList =({
               <Table
                 columns = {columns}
                 dataSource = {dataSource}
-                loading = {loading}
+                loading = {isloading}
                 rowKey = {record=>record.id}
                 pagination = {pagination}
               ></Table>
